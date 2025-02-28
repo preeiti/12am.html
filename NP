@@ -1,0 +1,195 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special for You</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #FFDEE9, #B5FFFC);
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            overflow: hidden;
+        }
+        header {
+            background-color: #ff8da1;
+            color: white;
+            padding: 20px;
+        }
+        .container {
+            padding: 20px;
+        }
+        .special-message {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+        .btn {
+            background-color: #ff8da1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        footer {
+            background-color: #ff8da1;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        /* Cake Styling */
+        .cake-scene {
+            position: fixed;
+            bottom: 50px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            text-align: center;
+        }
+        .cake {
+            width: 80px;
+            height: 50px;
+            background: #D2042D; /* Red velvet cake color */
+            border-radius: 5px;
+            position: relative;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        .cake::before {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 15px;
+            background: white;
+            border-radius: 5px;
+            top: -10px;
+            left: 10px;
+        }
+        .candle {
+            width: 5px;
+            height: 20px;
+            background: red;
+            position: absolute;
+            top: -20px;
+            left: 37px;
+        }
+        .flame {
+            width: 7px;
+            height: 12px;
+            background: orange;
+            border-radius: 50%;
+            position: absolute;
+            top: -25px;
+            left: 37px;
+            animation: flicker 1s infinite alternate;
+        }
+        @keyframes flicker {
+            0% {opacity: 1;}
+            100% {opacity: 0.5;}
+        }
+        /* Balloons */
+        .balloon {
+            position: absolute;
+            width: 30px;
+            height: 40px;
+            border-radius: 50%;
+            opacity: 0.9;
+            animation: floatUp 5s infinite ease-in-out;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+        }
+        .balloon::after {
+            content: "";
+            position: absolute;
+            width: 2px;
+            height: 40px;
+            background: black;
+            left: 50%;
+            top: 40px;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh); }
+            100% { transform: translateY(-10vh); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>A Tribute to You</h1>
+        <p>Because you deserve to feel special every day</p>
+    </header>
+
+    <div class="container">
+        <div class="special-message">
+            <h2>You're Incredible!</h2>
+            <p>Every moment with you is a cherished memory. Your kindness and strength light up the lives around you.</p>
+            <button class="btn" onclick="displayMessage()">Click to Feel Extra Special</button>
+            <p id="extra-message" style="margin-top: 15px; font-weight: bold;"></p>
+        </div>
+    </div>
+
+    <!-- Red Velvet Cake -->
+    <div class="cake-scene">
+        <div class="cake">
+            <div class="candle"></div>
+            <div class="flame"></div>
+        </div>
+    </div>
+
+    <!-- Happy Birthday Music -->
+    <audio id="birthdayMusic" autoplay loop>
+        <source src="https://www.fesliyanstudios.com/play-mp3/387" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Balloons -->
+    <script>
+        function createBalloon(color, leftPosition, duration) {
+            let balloon = document.createElement("div");
+            balloon.className = "balloon";
+            balloon.style.background = color;
+            balloon.style.left = leftPosition + "vw";
+            balloon.style.animationDuration = duration + "s";
+            document.body.appendChild(balloon);
+        }
+        
+        function generateBalloons() {
+            const colors = ["#FF5733", "#FFC300", "#DAF7A6", "#9b59b6", "#3498db", "#e74c3c", "#1abc9c", "#f39c12"];
+            for (let i = 0; i < 13; i++) {
+                let randomColor = colors[Math.floor(Math.random() * colors.length)];
+                let randomPosition = Math.random() * 90; // Random position across the screen
+                let randomDuration = Math.random() * 3 + 4; // Random speed
+                createBalloon(randomColor, randomPosition, randomDuration);
+            }
+        }
+        
+        function displayMessage() {
+            const messages = [
+                "Happiest Birthday My Sunshine",
+                "Every day with you is special. 💖",
+                "I love you more than words can say. ❤️",
+                "You're my greatest blessing! 🌟"
+            ];
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            document.getElementById('extra-message').innerText = randomMessage;
+        }
+
+        // Generate balloons when the page loads
+        window.onload = generateBalloons;
+    </script>
+
+    <footer>
+        <p>&copy; 2025 All rights reserved. Made with love just for you.</p>
+    </footer>
+
+</body>
+</html>
